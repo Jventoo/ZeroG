@@ -1,3 +1,3 @@
 # ZeroG
 
-Developed with Unreal Engine 4
+4 player cooperative scifi FPS developed with Unreal Engine 4.
