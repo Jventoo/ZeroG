@@ -54,11 +54,11 @@ void AZeroGCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInp
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	PlayerInputComponent->BindAction("JumpAction", IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction("JumpAction", IE_Released, this, &ACharacter::StopJumping);
 
-	PlayerInputComponent->BindAxis("MoveForward", this, &AZeroGCharacter::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &AZeroGCharacter::MoveRight);
+	PlayerInputComponent->BindAxis("MoveForward/Backwards", this, &AZeroGCharacter::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight/Left", this, &AZeroGCharacter::MoveRight);
 
 	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
 	// "turn" handles devices that provide an absolute delta, such as a mouse.
@@ -67,30 +67,8 @@ void AZeroGCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInp
 	PlayerInputComponent->BindAxis("TurnRate", this, &AZeroGCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AZeroGCharacter::LookUpAtRate);
-
-	// handle touch devices
-	PlayerInputComponent->BindTouch(IE_Pressed, this, &AZeroGCharacter::TouchStarted);
-	PlayerInputComponent->BindTouch(IE_Released, this, &AZeroGCharacter::TouchStopped);
-
-	// VR headset functionality
-	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AZeroGCharacter::OnResetVR);
 }
 
-
-void AZeroGCharacter::OnResetVR()
-{
-	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
-}
-
-void AZeroGCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
-{
-		Jump();
-}
-
-void AZeroGCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
-{
-		StopJumping();
-}
 
 void AZeroGCharacter::TurnAtRate(float Rate)
 {
