@@ -20,5 +20,11 @@ void AALSPlayerController::OnRestartPawn(APawn* NewPawn)
 	if (CastedMgr)
 	{
 		CastedMgr->OnPossess(PossessedCharacter);
+		GEngine->AddOnScreenDebugMessage(-1, 1.5f, FColor::Blue, "Success!");
 	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 1.5f, FColor::Blue, "Failure!");
+	}
+	
 }

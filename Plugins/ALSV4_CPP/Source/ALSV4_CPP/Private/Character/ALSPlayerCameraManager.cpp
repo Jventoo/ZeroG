@@ -31,7 +31,10 @@ void AALSPlayerCameraManager::OnPossess(AALSBaseCharacter* NewCharacter)
 	{
 		CastedBehv->PlayerController = GetOwningPlayerController();
 		CastedBehv->ControlledPawn = ControlledCharacter;
+		GEngine->AddOnScreenDebugMessage(-1, 1.5f, FColor::Blue, "Success!");
 	}
+	else
+		GEngine->AddOnScreenDebugMessage(-1, 1.5f, FColor::Blue, "Failure!");
 }
 
 float AALSPlayerCameraManager::GetCameraBehaviorParam(FName CurveName) const
