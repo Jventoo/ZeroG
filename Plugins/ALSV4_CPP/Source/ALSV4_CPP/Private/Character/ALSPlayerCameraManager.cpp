@@ -91,6 +91,7 @@ bool AALSPlayerCameraManager::CustomCameraBehavior(float DeltaTime, FVector& Loc
 	if (!ControlledCharacter)
 	{
 		return false;
+		GEngine->AddOnScreenDebugMessage(-1, 1.5f, FColor::Blue, "Failure!");
 	}
 
 	// Step 1: Get Camera Parameters from CharacterBP via the Camera Interface
